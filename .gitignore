@@ -1,2 +1,8 @@
+StreamClient/__pycache__/
+StreamClient/.idea/
+StreamClient/venv/
+TankStatusServer/__pycache__/
+TankStatusServer/.idea/
+TankStatusServer/venv/
 GUI/__pycache__/
 GUI/.idea/
