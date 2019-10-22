@@ -7,16 +7,16 @@ class RoverNoIdError(Exception):
 
 
 class RemoteRover(object):
-    def __init__(self):
-        self.id = ''
+    def __init__(self, i2d):
         self.status = 'UNINITIALIZED'
-        self.net = RNet()
+        self.net = RNet(self)
+        self.id = i2d
         self.connected = False
 
     def update_details(self):
         if id == '':
             raise RoverNoIdError
-        self.status, self.net.rov_address = self.net.get_details(self.id)
+        self.status, self.net.rov_address = self.net.get_details()
 
     def connect(self):
         if id == '':
@@ -32,12 +32,10 @@ class RemoteRover(object):
         self.net.get_response(self.net.rov_address, 'TERMINATE')
 
 
-
-
-
 class RNet(object):
     """Network handler specifically for a rover"""
-    def __init__(self):
+    def __init__(self, rover):
+        self.srover = rover
         self.rov_address = ('', 0)
 
     @staticmethod
@@ -60,8 +58,8 @@ class RNet(object):
             else:
                 return False
 
-    def get_details(self, rov_id):
-        response = self.get_response(ref.rovstat_serv, 'DETAILS.ID=' + rov_id).split(' ')
+    def get_details(self):
+        response = self.get_response(ref.rovstat_serv, 'DETAILS.ID=' + self.srover.id).split(' ')
         status, ip, port = '', '', ''
         for query in response:
             var_name, val = query.split('=', 1)
@@ -73,8 +71,8 @@ class RNet(object):
                 port = int(val)
         return status, (ip, port)
 
-    def enable_connection_mode(self, rov_id):
-        response = self.get_response(ref.rovstat_serv, 'LISTEN.ID=' + rov_id).split('=')
+    def enable_connection_mode(self):
+        response = self.get_response(ref.rovstat_serv, 'LISTEN.ID=' + self.srover.id).split('=')
         if response[0] == 'DENY':
             return response[1]
         elif response[0] == 'ACCEPT':
