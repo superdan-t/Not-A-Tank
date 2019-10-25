@@ -29,6 +29,8 @@ def status_received_from_tank(unique_id, ip, port):
     for tank in active_tanks:
         if tank.id == unique_id:
             tank.update_time = time.time()
+            tank.ip_addr = ip
+            tank.port = port
             return
     active_tanks.append(Tank(unique_id, ip, port))
     print('A new tank connected with details ', end='')

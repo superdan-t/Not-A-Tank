@@ -17,7 +17,7 @@ class RNet(object):
             response = s.recv(max_len).decode(ref.encoding)
             s.close()
             return response
-        except (socket.gaierror, socket.timeout):
+        except (socket.gaierror, socket.timeout, ConnectionRefusedError):
             return ''
 
     def linked(self):

@@ -49,5 +49,7 @@ def handle_connections():
                         client_socket.send(('ID=' + identity[1] + ' STATUS=VANISHED').encode('utf-8'))
                     else:
                         client_socket.send(target.dump_details().encode('utf-8'))
+                elif identity[0] == 'INFO':
+                    client_socket.send(('TYPE=TANKSTATSERV VERSION=' + '0.0.0').encode('utf-8'))
 
         client_socket.close()

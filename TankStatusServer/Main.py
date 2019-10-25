@@ -1,7 +1,9 @@
 import networkstreams
 import tankmanager
 
-print('Welcome to TankServer v0.0.0!')
+version = '0.0.0'
+
+print('Welcome to TankServer v' + version + '!')
 
 networkstreams.start_server()
 tankmanager.begin_tank_checking()

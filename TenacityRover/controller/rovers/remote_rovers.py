@@ -1,7 +1,11 @@
 from rovers import rover_network
-import threading
+
 
 class RoverIDError(Exception):
+    pass
+
+
+class RoverConnectError(Exception):
     pass
 
 
@@ -53,6 +57,8 @@ class RemoteRover(object):
         self.check_id()
         if self.net.enable_connection_mode() == 'ACCEPT':
             self.retrieve_details()
+            if self.status == 'VANISHED':
+                raise RoverConnectError('Specified rover is offline.')
             self.connected = self.net.linked()
 
     def disconnect(self):
