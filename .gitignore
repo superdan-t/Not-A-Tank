@@ -1,6 +1,7 @@
-StreamClient/__pycache__/
-StreamClient/.idea/
-StreamClient/venv/
+*.pyc
+TenacityRover/__pycache__/
+TenacityRover/.idea/
+TenacityRover/venv/
 TankStatusServer/__pycache__/
 TankStatusServer/.idea/
 TankStatusServer/venv/
