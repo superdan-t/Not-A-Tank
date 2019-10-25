@@ -1,4 +1,6 @@
 *.pyc
+TenacityRover/build/
+TenacityRover/dist/
 TenacityRover/__pycache__/
 TenacityRover/.idea/
 TenacityRover/venv/
