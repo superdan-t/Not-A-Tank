@@ -1,4 +1,4 @@
-from rovers import rover_network
+from . import rover_network
 
 
 class RoverIDError(Exception):

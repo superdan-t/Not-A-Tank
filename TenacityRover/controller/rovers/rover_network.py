@@ -1,5 +1,5 @@
 import socket
-import ref
+from .. import ref
 
 
 class RNet(object):

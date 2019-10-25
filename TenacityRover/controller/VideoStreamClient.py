@@ -1,7 +1,7 @@
 import cv2
 import imutils
 import numpy as np
-import imagezmq
+from . import imagezmq
 image_hub = imagezmq.ImageHub()
 while True:
     #host_name, image = image_hub.recv_image()
